@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <br>
+    <div class="col-lg-4 offset-lg-4">
+        <form method="POST" action="{% url "lista_compra" %}">{% csrf_token %}
+            <input type="submit" value="Ir a agregar_un_producto">
+        </form>
+    </div>
+
+    <div class="col-lg-4 offset-lg-4">
+        <strong> LISTA DE LA COMPRA </strong>
+        <br>
+        {% for elemento in cesta %}
+        <p>{{elemento.name}} : {{elemento.cantidad}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
