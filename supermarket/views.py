@@ -16,26 +16,30 @@ def save_product(request):
     if request.method == 'POST':
         # import pdb; pdb.set_trace()
 
-        if request.POST['action'] == 'Guardar':
-            producto = AltaProductos(request.POST['nombre'],request.POST['cantidad'])
+        name = request.POST['nombre']
+        qty = request.POST['cantidad']
+        action = request.POST['action']
+
+        if action == 'Guardar':
+            producto = AltaProductos(name,qty)
 
             # Add products
             product.objects.create(name = producto.name, cantidad = producto.cantidad)
 
             return render(request, 'saved.html', {'producto': producto, 'mensaje': 'Articulo guardado'})
     
-        elif request.POST['action'] == 'Modificar':
-            producto = product.objects.get(name=request.POST['nombre'])
-            producto.cantidad = request.POST['cantidad']
+        elif action == 'Modificar':
+            producto = product.objects.get(name=name)
+            producto.cantidad = qty
             producto.save()
             return render(request, 'saved.html', {'producto': producto, 'mensaje': 'Articulo modificado'})
         
-        elif request.POST['action'] == 'Borrar':
-            producto = product.objects.get(name=request.POST['nombre'])
+        elif action == 'Borrar':
+            producto = product.objects.get(name=name)
             producto.delete()
             return render(request, 'saved.html', {'producto': producto, 'mensaje': 'Articulo eliminado'})
 
-        elif request.POST['action'] == 'Ver_Lista':
+        elif action == 'Ver_Lista':
             cesta = product.objects.all()
             return render(request, 'panel.html', {'cesta': cesta})
 
