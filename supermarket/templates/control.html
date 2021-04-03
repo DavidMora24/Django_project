@@ -5,35 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <br>
-    <form method="POST" action="{% url "save" %}">{% csrf_token %}
+    <form method="POST" action="{% url "controla_producto" %}">{% csrf_token %}
+        <br>
+        <div class="col-lg-4 offset-lg-4">
+            <strong>IN CASE TO ADD, MODIFY OR DELETE. FILL OUT AND CHOOSE CORRESPOND ACTION</strong>
+            <br>        
+    
+            <br>
+            <p>Product name: <input type="text" name="nombre" size="40"></p>
+            <p>Quantity: <input type="text" name="cantidad" size="20"></p>
+        </div>
+        <br>
         <div class="col-lg-4 offset-lg-4">
             <fieldset class="form-group">
                 <div class="row">
-                <legend class="col-form-label col-sm-3 pt-0"><strong>Que desea hacer:</strong></legend>
+                <legend class="col-form-label col-sm-3 pt-0"><strong>What would you do?:</strong></legend>
                 <div class="col-sm-10">
                     <div class="form-check">
                     <input class="form-check-input" type="radio" name="action" id="gridRadios1" value="Ver_Lista" checked>
                     <label class="form-check-label" for="gridRadios1">
-                        Ver_Lista
+                        Goto the check list
                     </label>
                     </div>
                     <div class="form-check">
                     <input class="form-check-input" type="radio" name="action" id="gridRadios2" value="Guardar">
                     <label class="form-check-label" for="gridRadios2">
-                        Guardar articulo
+                        Save product
                     </label>
                     </div>
                     <div class="form-check disabled">
                     <input class="form-check-input" type="radio" name="action" id="gridRadios3" value="Modificar">
                     <label class="form-check-label" for="gridRadios3">
-                        Modificar articulo
+                        Modify product
                     </label>
                     </div>
                     <div class="form-check disabled">
                         <input class="form-check-input" type="radio" name="action" id="gridRadios3" value="Borrar">
                         <label class="form-check-label" for="gridRadios4">
-                            Borrar articulo
+                            Delete product
                         </label>
                     </div>
                 </div>
@@ -41,21 +50,6 @@
             </fieldset>
             <input type="submit" value="Submit">
         </div>
-        <br>
-        <div class="col-lg-4 offset-lg-4">
-            <strong>INGRESE PRODUCTO</strong> 
-            <p>Nombre_producto: <input type="text" name="nombre" size="40"></p>
-            <p>cantidad: <input type="text" name="cantidad" size="20"></p>
-        </div>
-        <br>
-        
     </form>
-
-    <div class="col-lg-4 offset-lg-4">
-        {% if producto %}
-            <p>{{mensaje}}: {{producto.name}} ({{producto.cantidad}})</p> 
-        {% endif %}
-    </div>
-
 </body>
 </html>

@@ -7,17 +7,22 @@
 <body>
     <br>
     <div class="col-lg-4 offset-lg-4">
-        <form method="POST" action="{% url "lista_compra" %}">{% csrf_token %}
-            <input type="submit" value="Ir a agregar_un_producto">
-        </form>
+        {% if producto %}
+            <p>{{mensaje}}: {{producto.name}} ({{producto.cantidad}})</p> 
+        {% endif %}
     </div>
-
     <div class="col-lg-4 offset-lg-4">
-        <strong> LISTA DE LA COMPRA </strong>
+        <strong> SHOPPING LIST </strong>
         <br>
         {% for elemento in cesta %}
-        <p>{{elemento.name}} : {{elemento.cantidad}}</p>
+        {{elemento.name}} : {{elemento.cantidad}}<br>
         {% endfor %}
+    </div>
+    <br>
+    <div class="col-lg-4 offset-lg-4">
+        <form method="POST" action="{% url "lista_compra" %}">{% csrf_token %}
+            <input type="submit" value="Go to panel control to add, modify or delete products">
+        </form>
     </div>
 </body>
 </html>
